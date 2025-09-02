@@ -133,7 +133,7 @@ Copy the private key and IP address (e.g., `10.5.0.2/16`) to your Gluetun Docker
 
 ```properties
 # .env
-
+TZ=America/New_York
 VPN_SERVICE_PROVIDER=nordvpn
 VPN_TYPE=wireguard
 WIREGUARD_ADDRESSES=[YOUR_INET_IP]
@@ -144,11 +144,11 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
    
    ```yaml
   networks:
-  servarr-network:
-    name: servarr-network
-    ipam:
-      config:
-        - subnet: 172.39.0.0/24
+    servarr-network:
+      name: servarr-network
+      ipam:
+        config:
+          - subnet: 172.39.0.0/24
 
   services:
     gluetun:
@@ -182,11 +182,6 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
         timeout: 10s
         retries: 5
       restart: unless-stopped
-      networks:
-        - servarr-network
-  networks:
-  servarr-network:
-    driver: bridge
    ```
 
 </details>
