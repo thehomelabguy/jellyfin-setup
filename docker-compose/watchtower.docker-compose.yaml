@@ -1,0 +1,20 @@
+# ignored options for 'watchtower'
+# --detach
+version: "3.3"
+services:
+  watchtower:
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    image: containrrr/watchtower
+    command: --interval 30
+    restart: unless-stopped
+networks:
+  admin_admin-network:
+    external: true
+  arrs_app-network:
+    external: true
+  jellyfin_app-network:
+    external: true
+  jellyfin_default:
+    external: true

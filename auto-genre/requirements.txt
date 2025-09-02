@@ -1,0 +1,2 @@
+jellyfin-apiclient-python>=1.9.2
+requests>=2.28.0

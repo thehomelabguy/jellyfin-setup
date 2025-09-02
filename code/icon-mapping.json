@@ -1,0 +1,17 @@
+{
+  "Shows": "tv",
+  "Movies": "movie",
+  "Music": "music_note",
+  "Books": "book",
+  "Photos": "photo",
+  "Home Videos": "videocam",
+  "TV Shows": "tv",
+  "Films": "movie",
+  "Audio": "music_note",
+  "Videos": "video_library",
+  "Pictures": "photo_library",
+  "Live TV": "live_tv",
+  "Channels": "tv",
+  "Playlists": "playlist_play",
+  "Collections": "collections"
+}

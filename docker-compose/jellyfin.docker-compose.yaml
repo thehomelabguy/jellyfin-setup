@@ -1,0 +1,46 @@
+version: "3.5"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin:latest
+    container_name: jellyfin
+    labels:
+      - com.centurylinklabs.watchtower.enable=false
+    user: 0:0
+    #network_mode: bridge
+    volumes:
+      - ./data/config:/config
+      - ./data/cache:/cache
+      - /opt/jellyfin-setup/images/favicon.png:/jellyfin/jellyfin-web/favicon.png
+      - /opt/jellyfin-setup/images/bc8d51405ec040305a87.ico:/jellyfin/jellyfin-web/bc8d51405ec040305a87.ico
+      - /opt/jellyfin-setup/images/banner-dark.png:/jellyfin/jellyfin-web/assets/img/banner-dark.png
+      - /opt/jellyfin-setup/images/banner-light.png:/jellyfin/jellyfin-web/assets/img/banner-light.png
+      - /opt/jellyfin-setup/images/touchicon.png:/jellyfin/jellyfin-web/touchicon.png
+      - /opt/jellyfin-setup/images/touchicon72.png:/jellyfin/jellyfin-web/touchicon72.png
+      - /opt/jellyfin-setup/images/touchicon114.png:/jellyfin/jellyfin-web/touchicon114.png
+      - /opt/jellyfin-setup/images/touchicon144.png:/jellyfin/jellyfin-web/touchicon144.png
+      - /opt/jellyfin-setup/images/touchicon512.png:/jellyfin/jellyfin-web/touchicon512.png
+      - /opt/jellyfin-setup/code/index.html:/jellyfin/jellyfin-web/index.html
+      - /opt/jellyfin-setup/code/main.jellyfin.bundle.js:/jellyfin/jellyfin-web/main.jellyfin.bundle.js
+      - /opt/jellyfin-setup/code/main.jellyfin.7d6eaeb032d03eb0ae47.css:/jellyfin/jellyfin-web/main.jellyfin.7d6eaeb032d03eb0ae47.css
+      - /opt/jellyfin-setup/code/home-html.8ce38bc7d6dc073656d4.chunk.js:/jellyfin/jellyfin-web/home-html.8ce38bc7d6dc073656d4.chunk.js
+      - /opt/jellyfin-setup/code/73233.d08d0c3a593dcbf1c7c7.chunk.js:/jellyfin/jellyfin-web/73233.d08d0c3a593dcbf1c7c7.chunk.js
+      - type: bind
+        source: /mnt/media/Radarr/Movies
+        target: /media/Radarr
+      - type: bind
+        source: /mnt/media/Sonarr/tvshows
+        target: /media/Sonarr
+      - type: bind
+        source: /mnt/media/Genres
+        target: /media/Genres
+    restart: unless-stopped
+    #environment:
+    #  - JELLYFIN_PublishedServerUrl= #[YOUR_JELLYFIN_URL]
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    networks:
+      - jellyfin-network
+    ports:
+      - 8096:8096
+networks:
+  app-network: null

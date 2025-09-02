@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+venv/
+env/
+.env
+
+# Generated files
+jellyfin_genres.json
+jellyfin_movies_with_genres.json
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
