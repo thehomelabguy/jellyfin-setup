@@ -143,6 +143,13 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
 
    
    ```yaml
+  networks:
+  servarr-network:
+    name: servarr-network
+    ipam:
+      config:
+        - subnet: 172.39.0.0/24
+
   services:
     gluetun:
       image: qmcgaw/gluetun
@@ -152,6 +159,9 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
         - NET_ADMIN
       devices:
         - /dev/net/tun:/dev/net/tun
+      networks:
+      servarr-network:
+        ipv4_address: 172.39.0.2
       ports:
         - 8080:8080 # qbittorrent
         - 6881:6881 # qbittorrent listen
@@ -353,7 +363,8 @@ Setup for **Prowlarr**, **Radarr**, and **Sonarr**.
       - 8989:8989
     restart: unless-stopped
     networks:
-      - servarr-network
+      servarr-network:
+        ipv4_address: 172.39.0.3
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
@@ -370,7 +381,8 @@ Setup for **Prowlarr**, **Radarr**, and **Sonarr**.
       - 7878:7878
     restart: unless-stopped
     networks:
-      - servarr-network
+      servarr-network:
+        ipv4_address: 172.39.0.4
 ```
 
 ```properties 
