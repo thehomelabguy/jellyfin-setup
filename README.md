@@ -586,7 +586,7 @@ services:
     ports:
       - 5055:5055
     volumes:
-      - /config:/app/config
+      - ./config:/app/config
     restart: unless-stopped
 ```
 
