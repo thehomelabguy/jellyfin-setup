@@ -160,8 +160,8 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
       devices:
         - /dev/net/tun:/dev/net/tun
       networks:
-      servarr-network:
-        ipv4_address: 172.39.0.2
+        servarr-network:
+          ipv4_address: 172.39.0.2
       ports:
         - 8080:8080 # qbittorrent
         - 6881:6881 # qbittorrent listen
@@ -212,9 +212,6 @@ qbittorrent:
 ```
 
 ```properties
-# .env
-
-TZ=America/New_York
 PUID=1000
 PGID=1000
 
