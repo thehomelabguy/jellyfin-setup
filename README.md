@@ -148,7 +148,7 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
       name: servarr-network
       ipam:
         config:
-          - subnet: 172.39.0.0/24
+          - subnet: 172.38.0.0/24
 
   services:
     gluetun:
@@ -161,7 +161,7 @@ WIREGUARD_PRIVATE_KEY=[YOUR_PRIVATE_KEY]
         - /dev/net/tun:/dev/net/tun
       networks:
         servarr-network:
-          ipv4_address: 172.39.0.2
+          ipv4_address: 172.38.0.2
       ports:
         - 8080:8080 # qbittorrent
         - 6881:6881 # qbittorrent listen
@@ -350,13 +350,13 @@ Setup for **Prowlarr**, **Radarr**, and **Sonarr**.
       - ./sonarr:/config
       - ${SONARR_BACKUP_DIR}:/data/Backup
       - ${SHOWS_DIRECTORY}:/data/tvshows
-      - ${DOWNLOADS_DIRECTORY}:/data/downloads
+      - ${DOWNLOADS_DIRECTORY}:/downloads
     ports:
       - 8989:8989
     restart: unless-stopped
     networks:
       servarr-network:
-        ipv4_address: 172.39.0.3
+        ipv4_address: 172.38.0.3
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
@@ -368,13 +368,13 @@ Setup for **Prowlarr**, **Radarr**, and **Sonarr**.
       - ./radarr:/config
       - ${MOVIES_DIRECTORY}:/data/movies
       - ${RADARR_BACKUP_DIR}:/data/backup
-      - ${DOWNLOADS_DIRECTORY}:/data/downloads
+      - ${DOWNLOADS_DIRECTORY}:/downloads
     ports:
       - 7878:7878
     restart: unless-stopped
     networks:
       servarr-network:
-        ipv4_address: 172.39.0.4
+        ipv4_address: 172.38.0.4
 ```
 
 ```properties 
