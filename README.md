@@ -506,8 +506,34 @@ Change Jellyfin Username and Password in .env file.
 ```bash 
 # /auto-genre/.env
 
-USERNAME=root #change me
-PASSWORD=password #change me
+# Jellyfin server URL (include http:// or https://)
+# Example: https://jellyfin.example.com or http://localhost:8096
+SERVER_URL=https://your-jellyfin-server.com:8096
+
+# Jellyfin username and password
+USERNAME=your-jellyfin-username
+PASSWORD=your-jellyfin-password
+
+# Docker example: /home/user/movies:/media/movies
+# Native example: /home/user/movies
+MOVIES_DIR=/path/to/your/movies
+
+# Docker example: /home/user/genres:/media/genres
+# Native example: /home/user/genres
+GENRES_DIR=/path/to/your/genres
+
+# Whether to include TV shows in genre linking (true/false)
+# Default: true
+INCLUDE_SHOWS=true
+
+# Docker example: /home/user/tvshows:/media/tvshows
+# Native example: /home/user/tvshows
+SHOWS_DIR=/path/to/your/tvshows
+```
+
+Make sure /Genres is owned by your current user
+```bash
+sudo chown -R $USER:$USER path/to/your/Genres
 ```
 
 Run the create_genre_symlinks.py script.
