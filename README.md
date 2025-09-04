@@ -467,7 +467,12 @@ networks:
    - Movies: `/media/movies`
    - TV Shows: `/media/shows`
 
-Once you've setup and logged into Jellyfin, go back to Dockge and add these binds to Jellyfin volumes.
+Once you've setup and logged into Jellyfin, clone the repo in ```/opt``` then go back to Dockge and add these binds to Jellyfin volumes.
+
+```bash
+cd /opt
+git clone https://github.com/thehomelabguy/jellyfin-setup.git
+```
 
 ```yaml
       - /opt/jellyfin-setup/images/favicon.png:/jellyfin/jellyfin-web/favicon.png
@@ -487,6 +492,19 @@ Once you've setup and logged into Jellyfin, go back to Dockge and add these bind
 ```
 
 Restart Jellyfin.
+
+## Jellyfin Custom CSS
+
+Go to Dashboard -> General -> Custom CSS code and add:
+
+```css
+@import url(https://cdn.jsdelivr.net/gh/apensotti/ZestyTheme@main/theme.css);
+@import url('https://cdn.jsdelivr.net/gh/stpnwf/ZestyTheme@latest/colorschemes/gray.css');
+
+.adminDrawerLogo img { content: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; } imgLogoIcon { content: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; } .pageTitleWithLogo { background-image: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; }
+```
+
+Click ```F12``` and right click the page refresh button and click ```Empty Cache and Hard Reload```  
 
 ## Genres Setup (Linux Only)
 
@@ -540,19 +558,6 @@ Run the create_genre_symlinks.py script.
 ```bash
 ./create_genre_symlinks.py
 ```
-
-## Jellyfin Custom CSS
-
-Go to Dashboard -> General -> Custom CSS code and add:
-
-```css
-@import url(https://cdn.jsdelivr.net/gh/apensotti/ZestyTheme@main/theme.css);
-@import url('https://cdn.jsdelivr.net/gh/stpnwf/ZestyTheme@latest/colorschemes/gray.css');
-
-.adminDrawerLogo img { content: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; } imgLogoIcon { content: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; } .pageTitleWithLogo { background-image: url(https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/9c952c1e-f37a-445e-ef74-609621ae6600/public) !important; }
-```
-
-Click ```F12``` and right click the page refresh button and click ```Empty Cache and Hard Reload```  
 
 ## Plugins
 
@@ -740,5 +745,39 @@ networks:
 - **Can't Access Admin Panel:** Check if port 81 is accessible and not blocked by firewall
 
 **Logs Location:** Check container logs in Dockge or use `docker logs nginx-proxy-manager`
+
+</details>
+
+<details>
+<summary>
+<h2><img src="https://cdn.jsdelivr.net/gh/homarr-labs/dashboard-icons/png/watchtower.png" width="32" height="32"> Watchtower (Optional)</h2>
+</summary>
+
+Run this as a standalone compose or with other services, it'll update all containers with no other setup.
+
+```yaml
+services:
+  watchtower:
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    image: containrrr/watchtower
+    command: --interval 30
+    restart: unless-stopped
+networks:
+  jellyfin_jellyfin-network:
+    external: true
+  jellyseer_default:
+    external: true
+  servarr-network:
+    external: true
+```
+
+You can use this to prevent another container from being updated by Watchtower.
+
+```yaml
+labels:
+  - com.centurylinklabs.watchtower.enable=false
+```
 
 </details>
