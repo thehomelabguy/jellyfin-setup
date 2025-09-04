@@ -3,9 +3,9 @@
 <img src="https://imagedelivery.net/ZYTNwtC8cUrRhA9tP_rjhg/4c9caa23-4574-49ea-d268-24d1be669b00/public" width="1000" height="600">
 
 <p align="center">
-  <img src="assets/Preview1.png" alt="Preview1" width="500"/>
-  <img src="assets/Preview2.png" alt="Preview2" width="500"/>
-  <img src="assets/Preview3.png" alt="Preview3" width="500"/>
+  <img src="assets/Preview1.png" alt="Preview1" width="1920"/>
+  <img src="assets/Preview2.png" alt="Preview2" width="1920"/>
+  <img src="assets/Preview3.png" alt="Preview3" width="1920"/>
 </p>
 
 > **A comprehensive guide to setting up a complete media server infrastructure with Docker, VPN protection, and automated download clients.**
